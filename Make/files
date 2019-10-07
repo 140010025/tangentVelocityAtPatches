@@ -1,0 +1,3 @@
+tangentWallVelocityAtPatchesFvPatchVectorField.C
+
+LIB = $(FOAM_USER_LIBBIN)/libMytangentBoundaryAtPatches
