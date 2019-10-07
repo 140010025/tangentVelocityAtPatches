@@ -34,7 +34,10 @@ Usage
     \table
         Property     | Description             | Required    | Default value
         axis         | axis of rotation        | yes         |
-        velMag       | magnitude of velocity at the surface [m/s] | yes    |
+        rotatePoint       | Point of rotation about which angle will be measured | yes      |
+        velMagRotation  | velocity magnitude with rotation sense (-1 for clockwise) | yes      |
+        is2D      | Is body is 2D or 3D "yes" if body is 2D | yes   |
+        positions   | start and end coordinates of each patch | yes   |
     \endtable
 
     Example of the boundary condition specification:
@@ -43,14 +46,16 @@ Usage
     {
         type            tangentWallVelocityAtPatches;
         axis            (0 0 1);
-        velMag          1;
+        rotationPoint   (0.25 0 0);
+        velMagRotation  (-10 20); // two patches on a body
+        is2D            "yes";
+        positions       ((0.5 0 0)(0 0.5 0));
     }
     \endverbatim
 
     
 See also
     Foam::fixedValueFvPatchField
-    Foam::Function1Types
 
 SourceFiles
     tangentWallVelocityAtPatchesFvPatchVectorField.C
@@ -91,8 +96,6 @@ class tangentWallVelocityAtPatchesFvPatchVectorField
 
         //points or indices where wall need to be rotated
         scalarListList positions_;
-
-
 
 
 public:
@@ -161,8 +164,6 @@ public:
                 new tangentWallVelocityAtPatchesFvPatchVectorField(*this, iF)
             );
         }
-
-
 
     // Member functions
 
