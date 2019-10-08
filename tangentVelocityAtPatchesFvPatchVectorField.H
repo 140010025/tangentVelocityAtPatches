@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::tangentWallVelocityAtPatchesFvPatchVectorField
+    Foam::tangentVelocityAtPatchesFvPatchVectorField
 
 Group
     grpWallBoundaryConditions grpGenericBoundaryConditions
@@ -44,12 +44,12 @@ Usage
     \verbatim
     <patchName>
     {
-        type            tangentWallVelocityAtPatches;
+        type            tangentVelocityAtPatches;
         axis            (0 0 1);
-        rotationPoint   (0.25 0 0);
-        velMagRotation  (-10 20); // two patches on a body
+        rotationPoint   (0 0 0);
+        velMagRotation  (-1 1); // two patches on a body
         is2D            "yes";
-        positions       ((0.5 0 0)(0 0.5 0));
+        positions       ((0 0.5 0)(0 0 0)(0 0 0)(0 -0.5 0));
     }
     \endverbatim
 
@@ -58,12 +58,12 @@ See also
     Foam::fixedValueFvPatchField
 
 SourceFiles
-    tangentWallVelocityAtPatchesFvPatchVectorField.C
+    tangentVelocityAtPatchesFvPatchVectorField.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef tangentWallVelocityAtPatchesFvPatchVectorField_H
-#define tangentWallVelocityAtPatchesFvPatchVectorField_H
+#ifndef tangentVelocityAtPatchesFvPatchVectorField_H
+#define tangentVelocityAtPatchesFvPatchVectorField_H
 
 #include "fixedValueFvPatchFields.H"
 
@@ -73,10 +73,10 @@ namespace Foam
 {
 
 /*---------------------------------------------------------------------------*\
-           Class tangentWallVelocityAtPatchesFvPatchVectorField Declaration
+           Class tangentVelocityAtPatchesFvPatchVectorField Declaration
 \*---------------------------------------------------------------------------*/
 
-class tangentWallVelocityAtPatchesFvPatchVectorField
+class tangentVelocityAtPatchesFvPatchVectorField
 :
     public fixedValueFvPatchVectorField
 {
@@ -101,40 +101,40 @@ class tangentWallVelocityAtPatchesFvPatchVectorField
 public:
 
     //- Runtime type information
-    TypeName("tangentWallVelocityAtPatches");
+    TypeName("tangentVelocityAtPatches");
 
 
     // Constructors
 
         //- Construct from patch and internal field
-        tangentWallVelocityAtPatchesFvPatchVectorField
+        tangentVelocityAtPatchesFvPatchVectorField
         (
             const fvPatch&,
             const DimensionedField<vector, volMesh>&
         );
 
         //- Construct from patch, internal field and dictionary
-        tangentWallVelocityAtPatchesFvPatchVectorField
+        tangentVelocityAtPatchesFvPatchVectorField
         (
             const fvPatch&,
             const DimensionedField<vector, volMesh>&,
             const dictionary&
         );
 
-        //- Construct by mapping given tangentWallVelocityAtPatchesFvPatchVectorField
+        //- Construct by mapping given tangentVelocityAtPatchesFvPatchVectorField
         //  onto a new patch
-        tangentWallVelocityAtPatchesFvPatchVectorField
+        tangentVelocityAtPatchesFvPatchVectorField
         (
-            const tangentWallVelocityAtPatchesFvPatchVectorField&,
+            const tangentVelocityAtPatchesFvPatchVectorField&,
             const fvPatch&,
             const DimensionedField<vector, volMesh>&,
             const fvPatchFieldMapper&
         );
 
         //- Construct as copy
-        tangentWallVelocityAtPatchesFvPatchVectorField
+        tangentVelocityAtPatchesFvPatchVectorField
         (
-            const tangentWallVelocityAtPatchesFvPatchVectorField&
+            const tangentVelocityAtPatchesFvPatchVectorField&
         );
 
         //- Construct and return a clone
@@ -142,14 +142,14 @@ public:
         {
             return tmp<fvPatchVectorField>
             (
-                new tangentWallVelocityAtPatchesFvPatchVectorField(*this)
+                new tangentVelocityAtPatchesFvPatchVectorField(*this)
             );
         }
 
         //- Construct as copy setting internal field reference
-        tangentWallVelocityAtPatchesFvPatchVectorField
+        tangentVelocityAtPatchesFvPatchVectorField
         (
-            const tangentWallVelocityAtPatchesFvPatchVectorField&,
+            const tangentVelocityAtPatchesFvPatchVectorField&,
             const DimensionedField<vector, volMesh>&
         );
 
@@ -161,7 +161,7 @@ public:
         {
             return tmp<fvPatchVectorField>
             (
-                new tangentWallVelocityAtPatchesFvPatchVectorField(*this, iF)
+                new tangentVelocityAtPatchesFvPatchVectorField(*this, iF)
             );
         }
 

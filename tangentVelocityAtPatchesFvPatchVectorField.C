@@ -23,7 +23,7 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "tangentWallVelocityAtPatchesFvPatchVectorField.H"
+#include "tangentVelocityAtPatchesFvPatchVectorField.H"
 #include "addToRunTimeSelectionTable.H"
 #include "volFields.H"
 #include "surfaceFields.H"
@@ -123,8 +123,8 @@ Foam::scalarListList positions_, Foam::vector axis_, Foam::vector rotatePoint_)
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::tangentWallVelocityAtPatchesFvPatchVectorField::
-tangentWallVelocityAtPatchesFvPatchVectorField
+Foam::tangentVelocityAtPatchesFvPatchVectorField::
+tangentVelocityAtPatchesFvPatchVectorField
 (
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF
@@ -139,8 +139,8 @@ tangentWallVelocityAtPatchesFvPatchVectorField
 {}
 
 
-Foam::tangentWallVelocityAtPatchesFvPatchVectorField::
-tangentWallVelocityAtPatchesFvPatchVectorField
+Foam::tangentVelocityAtPatchesFvPatchVectorField::
+tangentVelocityAtPatchesFvPatchVectorField
 (
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF,
@@ -169,10 +169,10 @@ tangentWallVelocityAtPatchesFvPatchVectorField
 }
 
 
-Foam::tangentWallVelocityAtPatchesFvPatchVectorField::
-tangentWallVelocityAtPatchesFvPatchVectorField
+Foam::tangentVelocityAtPatchesFvPatchVectorField::
+tangentVelocityAtPatchesFvPatchVectorField
 (
-    const tangentWallVelocityAtPatchesFvPatchVectorField& ptf,
+    const tangentVelocityAtPatchesFvPatchVectorField& ptf,
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF,
     const fvPatchFieldMapper& mapper
@@ -187,10 +187,10 @@ tangentWallVelocityAtPatchesFvPatchVectorField
 {}
 
 
-Foam::tangentWallVelocityAtPatchesFvPatchVectorField::
-tangentWallVelocityAtPatchesFvPatchVectorField
+Foam::tangentVelocityAtPatchesFvPatchVectorField::
+tangentVelocityAtPatchesFvPatchVectorField
 (
-    const tangentWallVelocityAtPatchesFvPatchVectorField& rwvpvf
+    const tangentVelocityAtPatchesFvPatchVectorField& rwvpvf
 )
 :
     fixedValueFvPatchField<vector>(rwvpvf),
@@ -202,10 +202,10 @@ tangentWallVelocityAtPatchesFvPatchVectorField
 {}
 
 
-Foam::tangentWallVelocityAtPatchesFvPatchVectorField::
-tangentWallVelocityAtPatchesFvPatchVectorField
+Foam::tangentVelocityAtPatchesFvPatchVectorField::
+tangentVelocityAtPatchesFvPatchVectorField
 (
-    const tangentWallVelocityAtPatchesFvPatchVectorField& rwvpvf,
+    const tangentVelocityAtPatchesFvPatchVectorField& rwvpvf,
     const DimensionedField<vector, volMesh>& iF
 )
 :
@@ -220,7 +220,7 @@ tangentWallVelocityAtPatchesFvPatchVectorField
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::tangentWallVelocityAtPatchesFvPatchVectorField::updateCoeffs()
+void Foam::tangentVelocityAtPatchesFvPatchVectorField::updateCoeffs()
 {
     if (updated())
     {
@@ -272,7 +272,7 @@ void Foam::tangentWallVelocityAtPatchesFvPatchVectorField::updateCoeffs()
 
 
 
-void Foam::tangentWallVelocityAtPatchesFvPatchVectorField::write(Ostream& os) const
+void Foam::tangentVelocityAtPatchesFvPatchVectorField::write(Ostream& os) const
 {
     fvPatchVectorField::write(os);
     os.writeKeyword("axis") << axis_ << token::END_STATEMENT << nl;
@@ -291,7 +291,7 @@ namespace Foam
     makePatchTypeField
     (
         fvPatchVectorField,
-        tangentWallVelocityAtPatchesFvPatchVectorField
+        tangentVelocityAtPatchesFvPatchVectorField
     );
 }
 
