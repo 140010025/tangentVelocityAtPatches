@@ -6,7 +6,7 @@ This repository contains the library which is the upgraded version of inbuilt bo
 
 Clone the repository as follows:
 ```
-    $ git clone https://github.com/140010025/tangentVelocityAtPatches.git
+    $ git clone https://github.com/prstukumar/tangentVelocityAtPatches.git
 ```
 ## Installation
 
