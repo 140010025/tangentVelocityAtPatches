@@ -11,7 +11,7 @@ CYLINDER
 {
     type              tangentVelocityAtPatches;
     axis              (0 0 1);
-    rotationPoint     (0 0 0);
+    rotatePoint       (0 0 0);
     velMagRotation    (-1 1);
     is2D              "yes";
     positions         ((0.5 0 0)(-0.5 0 0)(-0.5 0 0)(0.5 0 0));
@@ -19,7 +19,7 @@ CYLINDER
 ```
 where, 
 1. ```axis``` - axis of rotation
-2. ```rotationPoint``` - This point must be inside body and if line drawn from this point, line must intersect body not more than two points.
+2. ```rotatePoint``` - This point must be inside body and if line drawn from this point, line must intersect body not more than two points.
 3. ```velMagRotation``` - (-1 1) means upper patch is moving with velocity 1 unit in clockwise and lower patch with 1 unit velocity in anticlockwise direction
 4. ```is2D``` - If body is 2D "yes", else "no"
 5. ```positions``` - ((0.5 0 0)(-0.5 0 0)(-0.5 0 0)(0.5 0 0)) is a set of start and end coordinates of each patch, for upper patch start point is (0.5 0 0) while end point is (-0.5 0 0). Please note that start and end coordinates of each patch must be given in anticlockwise manner.
