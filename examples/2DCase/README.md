@@ -2,7 +2,7 @@
 
 Here's an example to help users to get familiar with library. We would like to move the upper half portion of cylinder (radius = R) in clockwise sense and lower half portion in anticlockwise sense as shown in figure. 
 
-![alt text](https://github.com/140010025/tangentVelocityAtPatches/blob/master/example/figure2.png)
+![alt text](https://github.com/prstukumar/tangentVelocityAtPatches/blob/master/examples/2DCase/figure2.png)
 
 This can be achieved by using this library on the cylinder wall in velocity file (U). Here's a case file attached which will simulate flow over cylinder (R = 0.5 m) with prescribed velocity boundary condition on cylinder wall as shown in figure. Boundary condition applied on cylinder in U file is shown here:
 
