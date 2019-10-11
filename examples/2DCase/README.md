@@ -1,6 +1,6 @@
-# Tutorial of library
+# Tutorial of library (2D case)
 
-Here's an example to help users to get familiar with library. We would like to move the upper half portion of cylinder (radius = R) in clockwise sense and lower half portion in anticlockwise sense as shown in figure. 
+Here's an example to help users to get familiar with library (2D case). We would like to move the upper half portion of cylinder (radius = R) in clockwise sense and lower half portion in anticlockwise sense as shown in figure. 
 
 ![alt text](https://github.com/prstukumar/tangentVelocityAtPatches/blob/master/examples/2DCase/figure2.png)
 
