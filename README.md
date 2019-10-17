@@ -10,5 +10,5 @@ Clone the repository as follows:
 ```
 ## Installation
 
-1. Requires OpenFOAM-5 or OpenFOAM-6.
+1. Requires OpenFOAM-7.
 2. Type 'wmake libso' for installing in your system.

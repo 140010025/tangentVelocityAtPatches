@@ -275,12 +275,12 @@ void Foam::tangentVelocityAtPatchesFvPatchVectorField::updateCoeffs()
 void Foam::tangentVelocityAtPatchesFvPatchVectorField::write(Ostream& os) const
 {
     fvPatchVectorField::write(os);
-    os.writeKeyword("axis") << axis_ << token::END_STATEMENT << nl;
-    os.writeKeyword("rotatePoint") << rotatePoint_ << token::END_STATEMENT << nl; 
-    os.writeKeyword("velMagRotation") << velMagRotation_ << token::END_STATEMENT << nl;
-    os.writeKeyword("is2D") << is2D_ << token::END_STATEMENT << nl;
-    os.writeKeyword("positions") << positions_ << token::END_STATEMENT << nl;
-    writeEntry("value", os);
+    writeEntry(os, "axis", axis_);
+    writeEntry(os, "rotatePoint", rotatePoint_); 
+    writeEntry(os, "velMagRotation", velMagRotation_);
+    writeEntry(os, "is2D", is2D_);
+    writeListEntries(os, "positions", positions_);
+    writeEntry(os, "value", *this);
 }
 
 
