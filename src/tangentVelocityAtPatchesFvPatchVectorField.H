@@ -33,7 +33,6 @@ Description
 Usage
     \table
         Property     | Description             | Required    | Default value
-        axis         | axis of rotation        | yes         |
         rotatePoint       | Point of rotation about which angle will be measured | yes      |
         velMagRotation  | velocity magnitude with rotation sense (-1 for clockwise) | yes      |
         is2D      | Is body is 2D or 3D "yes" if body is 2D | yes   |
@@ -45,8 +44,7 @@ Usage
     <patchName>
     {
         type            tangentVelocityAtPatches;
-        axis            (0 0 1);
-        rotationPoint   (0 0 0);
+        rotationPoint   (0.1 0 0);
         velMagRotation  (-1 1); // two patches on a body
         is2D            "yes";
         positions       ((0 0.5 0)(0 0 0)(0 0 0)(0 -0.5 0));
@@ -81,9 +79,6 @@ class tangentVelocityAtPatchesFvPatchVectorField
     public fixedValueFvPatchVectorField
 {
     // Private data
-
-        //- Axis of the rotation
-        vector axis_;
 
         //Point of rotation about which angle will be measured
         vector rotatePoint_;
@@ -168,18 +163,6 @@ public:
     // Member functions
 
         // Access functions
-
-            //- Return the axis of the rotation
-            const vector& axis() const
-            {
-                return axis_;
-            }
-
-            //- Return non-const access to the axis of the rotation
-            vector& axis()
-            {
-                return axis_;
-            }
 
             //- Return the axis of the rotation
             const vector& rotatePoint() const
