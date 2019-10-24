@@ -31,7 +31,7 @@ License
 
 //----finding patch index-----------------------------------------------------------------
 Foam::labelListList find_patchIndex(Foam::vectorField cent, 
-Foam::scalarListList positions_, Foam::vector axis_, Foam::vector rotatePoint_)
+Foam::scalarListList positions_, Foam::vector rotatePoint_)
 {
     if(positions_.size() == 2 && positions_[0] == positions_[1])
     {  
@@ -50,6 +50,7 @@ Foam::scalarListList positions_, Foam::vector axis_, Foam::vector rotatePoint_)
         Foam::scalarList angleList_(cent.size());   
         const Foam::scalar myPI = Foam::constant::mathematical::pi;
         Foam::scalarList givenAngles_(positions_.size());
+        Foam::vector axis_ = rotatePoint_/mag(rotatePoint_);
 
         for(int i = 0; i < positions_.size(); i++)
         {
@@ -131,7 +132,6 @@ tangentVelocityAtPatchesFvPatchVectorField
 )
 :
     fixedValueFvPatchField<vector>(p, iF),
-    axis_(Zero),
     rotatePoint_(Zero),
     velMagRotation_(Zero),
     is2D_("yes"),
@@ -148,7 +148,6 @@ tangentVelocityAtPatchesFvPatchVectorField
 )
 :
     fixedValueFvPatchField<vector>(p, iF, dict, false),
-    axis_(dict.lookup("axis")),
     rotatePoint_(dict.lookup("rotatePoint")),
     velMagRotation_(dict.lookup("velMagRotation")),
     is2D_(dict.lookup("is2D")),
@@ -179,7 +178,6 @@ tangentVelocityAtPatchesFvPatchVectorField
 )
 :
     fixedValueFvPatchField<vector>(ptf, p, iF, mapper),
-    axis_(ptf.axis_),
     rotatePoint_(ptf.rotatePoint_),
     velMagRotation_(ptf.velMagRotation_),
     is2D_(ptf.is2D_),
@@ -194,7 +192,6 @@ tangentVelocityAtPatchesFvPatchVectorField
 )
 :
     fixedValueFvPatchField<vector>(rwvpvf),
-    axis_(rwvpvf.axis_),
     rotatePoint_(rwvpvf.rotatePoint_),
     velMagRotation_(rwvpvf.velMagRotation_),
     is2D_(rwvpvf.is2D_),
@@ -210,7 +207,6 @@ tangentVelocityAtPatchesFvPatchVectorField
 )
 :
     fixedValueFvPatchField<vector>(rwvpvf, iF),
-    axis_(rwvpvf.axis_),
     rotatePoint_(rwvpvf.rotatePoint_),
     velMagRotation_(rwvpvf.velMagRotation_),
     is2D_(rwvpvf.is2D_),
@@ -231,15 +227,16 @@ void Foam::tangentVelocityAtPatchesFvPatchVectorField::updateCoeffs()
     {
         vectorField Up(patch().Cf().size(), vector(0.0, 0.0, 0.0));
         labelListList patchIndex_ = find_patchIndex(patch().Cf(), 
-                                    positions_, axis_, rotatePoint_);
+                                    positions_, rotatePoint_);
         const vectorField myNf(patch().Sf()/patch().magSf()); 
-
+        const vector axis_ = rotatePoint_/mag(rotatePoint_);
+      
         for(int i = 0; i < patchIndex_.size(); i++)
         {
             for(int j = 0; j < patchIndex_[i].size(); j++)
             {
                 Up[patchIndex_[i][j]] = velMagRotation_[i]*\
-                (myNf[patchIndex_[i][j]] ^ axis_/mag(axis_));
+                (myNf[patchIndex_[i][j]] ^ axis_);
             }
         }
         
@@ -252,13 +249,14 @@ void Foam::tangentVelocityAtPatchesFvPatchVectorField::updateCoeffs()
     {
         vectorField Up(patch().Cf().size(), vector(0.0, 0.0, 0.0));    
         const vectorField myNf(patch().Sf()/patch().magSf()); 
-
+        const vector axis_ = rotatePoint_/mag(rotatePoint_);  
+      
         for(int i = 0; i < positions_.size(); i++)
         {
             for(int j = 0; j < positions_[i].size(); j++)
             {
                 Up[int(positions_[i][j])] = velMagRotation_[i]*\
-                (myNf[int(positions_[i][j])] ^ axis_/mag(axis_));
+                (myNf[int(positions_[i][j])] ^ axis_);
             }
         }
 
@@ -275,7 +273,6 @@ void Foam::tangentVelocityAtPatchesFvPatchVectorField::updateCoeffs()
 void Foam::tangentVelocityAtPatchesFvPatchVectorField::write(Ostream& os) const
 {
     fvPatchVectorField::write(os);
-    writeEntry(os, "axis", axis_);
     writeEntry(os, "rotatePoint", rotatePoint_); 
     writeEntry(os, "velMagRotation", velMagRotation_);
     writeEntry(os, "is2D", is2D_);
